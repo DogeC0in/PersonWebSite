@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxxxf.dao.UserDao">
+	<!-- 查询用户信息 -->
+	<select id="getUser" parameterType="map"
+	resultType="com.xxxxf.pojo.User">
+		select username as userName,password as passWord from 
+		user where username=#{userName}
+	</select>
+	<!--按主键查询  -->
+	<select id="getUserByUserName" parameterType="string" resultType="string">
+		select username as userName from user where username=#{userName}
+	</select>
+	<!--  public int addUser(User user); -->
+	<!-- 增加用户信息 -->
+	<insert id="addUser" parameterType="com.xxxxf.pojo.User" >
+		insert into user(username,password) value(#{userName},#{passWord})
+	</insert>
+</mapper>
