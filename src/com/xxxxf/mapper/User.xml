@@ -4,9 +4,9 @@
 <mapper namespace="com.xxxxf.dao.UserDao">
 	<!-- 查询用户信息 -->
 	<select id="getUser" parameterType="map"
-	resultType="com.xxxxf.pojo.User">
+	resultType="string">
 		select username as userName,password as passWord from 
-		user where username=#{userName}
+		user where username=#{userName} and password=#{passWord}
 	</select>
 	<!--按主键查询  -->
 	<select id="getUserByUserName" parameterType="string" resultType="string">

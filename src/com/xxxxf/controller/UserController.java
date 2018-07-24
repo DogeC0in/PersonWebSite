@@ -8,10 +8,13 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,20 +33,13 @@ public class UserController {
 	//依赖注入
 	@Autowired
 	private UserService userService=null;
-	
-	/*public Map<String, Object> checkUser(String userName) {
-		//检查用户是否存在
-		User result=userService.checkUser(userName);
-		Map<String, Object> retMap = new HashMap<String, Object>();
-		boolean flag=(result==null);
-	    retMap.put("success",flag);
-	    retMap.put("message", flag?"注册成功":"用户名已存在");
-		return retMap;
-		
-	}*/
+	/**
+	 * 注册功能实现
+	 * */
 	@RequestMapping(value="/register.do")
 	@ResponseBody
 	public ModelAndView regist(User user,Model model,HttpServletResponse response) throws IOException {
+		System.out.println("#################################################");
 		System.out.println("用户注册:"+"账号:"+user.getUserName()+" "+"密码:"+user.getPassWord());
 		String userName=user.getUserName();
 		String result=userService.checkUser(userName);
@@ -64,13 +60,38 @@ public class UserController {
 			return null;
 			
 	}
-	
-	public ModelAndView login(User user,Model model,HttpServletRequest request,HttpServletResponse response) {
-		System.out.println("用户登录:"+"账号:"+user.getUserName()+" "+"密码:"+user.getPassWord());
-		String userName=user.getUserName();
-		String passWord=user.getPassWord();
-		userService.login(userName, passWord);
-		model.addAttribute("msg", "登陆成功");
+	/**
+	 * 登录功能实现
+	 * */
+	@RequestMapping(value="/login.do")
+	@ResponseBody
+	public  ModelAndView login( @RequestBody User user,HttpServletRequest request,HttpServletResponse response) {
+		/*Model model,HttpServletRequest request,HttpServletResponse response*/
+		System.out.println("***********************************");
+		String username=user.getUserName();
+		//request.getParameter(username);
+		String password=user.getPassWord();
+		System.out.println("用户登录:"+"账号:"+username+" "+"密码:"+password);
+		String result=userService.login(username, password);
+		System.out.println("从数据查询结果:"+result);
+		/*response.getWriter().write(username);*/
+		if (result != null) {
+			try {
+				response.getWriter().write("true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				response.getWriter().write("false");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		//model.addAttribute("msg", "登陆成功");
 		return null;
 		
 	}

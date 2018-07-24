@@ -30,7 +30,8 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 //定义Spring 扫描的包
-@ComponentScan(value= "com.*", includeFilters= {@Filter(type = FilterType.ANNOTATION, value ={Service.class})})
+@ComponentScan(value= "com.*", 
+includeFilters= {@Filter(type = FilterType.ANNOTATION, value ={Service.class})})
 //使用事务驱动管理器
 @EnableTransactionManagement
 //实现接口TransactionManagementConfigurer，这样可以配置注解驱动事务

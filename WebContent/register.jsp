@@ -28,38 +28,6 @@
                 layedit.sync(editIndex);
             },
             
-          //校验用户名是否存在
-         /*  exists:function(value, item){
-                var rs = "用户名已存在";
-                $.ajax({
-                    type: "GET",
-                    url: "${pageContext.request.contextPath }/register.do",
-                    async: false,
-                    data: {checkType:"username", username:value},
-                    success: function(result){
-                        if(result=='failed'){
-                            rs = "";
-                        }
-                    }
-                });
-                return rs;
-            },  */
-           /* correct:function(value, item){
-                var rs = "正在校验用户信息";
-                var username = $("input[name='username']").val();
-                var usertype = $("input[name='usertype']:checked").val();
-                $.ajax({
-                    type: "GET",
-                    url: "${pageContext.request.contextPath }/check.do",
-                    async: false, //很重要
-                    data: {checkType:"userinfo", username:username, password:value},
-                    success: function(result){
-
-                    }
-                });
-                return rs;
-            }*/
-
         });
         form.on('submit(go)', function(data){
 			  $("form").submit();

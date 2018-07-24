@@ -13,7 +13,7 @@ public interface UserDao {
 	/**
 	 * 查询用户信息	
 	 */
-   public User getUser(@Param("userName") String userName,@Param("passWord") String passWord);
+   public String getUser(@Param("userName") String userName,@Param("passWord") String passWord);
    /**
     * 增加用户  
     */

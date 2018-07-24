@@ -32,9 +32,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	//∂¡–¥Ã·Ωª
 	@Transactional(isolation=Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
-	public void login(String userName, String passWord) {
+	public String login(String userName, String passWord) {
 		// TODO Auto-generated method stub
-		userDao.getUser(userName, passWord);
+		//userDao.getUser(userName, passWord);
+		return userDao.getUser(userName, passWord);
 	}
 
 	@Override

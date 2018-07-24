@@ -14,7 +14,7 @@ public interface UserService {
   /**
    * 用户登录 
    */
-   public void login(String userName,String passWord);
+   public String login(String userName,String passWord);
    /**
     * 检测用户是否存在
     */
