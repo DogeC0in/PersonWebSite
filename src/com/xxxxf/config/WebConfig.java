@@ -22,7 +22,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 //定义Spring MVC扫描的包
-@ComponentScan(value="com.*", includeFilters= {@Filter(type = FilterType.ANNOTATION, value = Controller.class)})
+@ComponentScan(value="com.*",
+includeFilters= {@Filter(type = FilterType.ANNOTATION, value = Controller.class)})
 //启动Spring MVC配置
 @EnableWebMvc
 public class WebConfig extends AsyncConfigurerSupport { 
@@ -61,7 +62,9 @@ public class WebConfig extends AsyncConfigurerSupport {
 		return rmhd;
 	}
 	
-	
+	/**
+	 * 异步任务处理
+	 * */
 	@Override
 	public Executor getAsyncExecutor() {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
